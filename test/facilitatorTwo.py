@@ -1,6 +1,6 @@
 import unittest
 
-from src.studentmanagement.facilitator import Facilitator
+from src.studentmanagement.facilitatorTwo import Facilitator
 
 
 class MyTestCase(unittest.TestCase):
