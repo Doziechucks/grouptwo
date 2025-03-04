@@ -1,12 +1,11 @@
 class CoursesOffered:
 
     def __init__(self, courses,courseID):
-        self.courses = []
+        self.courses = {}
         self.coursesID = []
 
-    def create_courses(self, course, course_id):
-        if course_id in self.coursesID:
-            return f"Course {course_id} already exists"
-        self.courses[course_id] = course
-        self.coursesID.append(course_id)
-        return f"Course {course_id} created successfully"
+    def createCourses(self, courses, courseID):
+        if courses in self.courses and courseID in self.coursesID:
+            self.courses[courseID].append(courses)
+            self.coursesID.append(courseID)
+            return f"Course {courseID} already exists"
