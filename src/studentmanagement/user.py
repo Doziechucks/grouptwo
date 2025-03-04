@@ -52,3 +52,4 @@ class User:
 
     def logout(self):
         self.__is_logged_in = False
+
