@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64723e99-215b-449a-9894-dc2d97e1a06b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/studentmanagement/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/studentmanagement/courses.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/studentmanagement/facilitator.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/studentmanagement/facilitator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/studentmanagement/students.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/studentmanagement/students.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/studentmanagement/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/studentmanagement/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/studentmanagement/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/studentmanagement/users.py" afterDir="false" />
-    </list>
+    <list default="true" id="64723e99-215b-449a-9894-dc2d97e1a06b" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -192,7 +184,7 @@
       <updated>1740993344134</updated>
       <workItem from="1740993347194" duration="270000" />
       <workItem from="1741007374351" duration="10188000" />
-      <workItem from="1741077648337" duration="13967000" />
+      <workItem from="1741077648337" duration="14409000" />
     </task>
     <servers />
   </component>
