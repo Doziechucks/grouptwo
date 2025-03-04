@@ -1,8 +1,15 @@
 import unittest
 
+from src.studentmanagement.corsesOffered import CoursesOffered
+
+
 class MyTestCase(unittest.TestCase):
-    def test_something(self):
-        self.assertEqual(True, False)  # add assertion here
+
+    def setUp(self):
+        self.coursesOffered = CoursesOffered("English","STU12")
+
+    def test_that_create_courses(self):
+        self.assertEqual(self.coursesOffered.create_courses("English","STU12"), "Course STU12 already exists")
 
 if __name__ == '__main__':
     unittest.main()
