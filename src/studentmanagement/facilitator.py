@@ -1,4 +1,4 @@
-from user import User
+from src.studentmanagement.user import User
 
 class Facilitator(User):
     def __init__(self, firstname, lastname, email, password):
