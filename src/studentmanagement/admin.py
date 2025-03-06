@@ -1,4 +1,4 @@
-from user import User
+from src.studentmanagement.user import User
 
 
 class CourseAdmin(User):
@@ -6,7 +6,7 @@ class CourseAdmin(User):
         super().__init__(firstname, lastname, email, password)
         self.__course_list = []
 
-
+    
 
     def create_course(self, course_name, course_id, facilitator_name, facilitator_email):
         course_information = [course_name, course_id, facilitator_name, facilitator_email]

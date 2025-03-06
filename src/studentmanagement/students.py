@@ -1,5 +1,5 @@
-from user import User
-from admin import CourseAdmin
+from src.studentmanagement.user import User
+from src.studentmanagement.admin import CourseAdmin
 
 
 def view_available_courses():
@@ -26,7 +26,10 @@ class StudentManagement(User):
     def add_course(self, course_id):
         self.__course_list.append(course_id)
 
-    def view_offered_corurse(self):
+    def get_course_list_size(self):
+        return len(self.__course_list)
+
+    def view_offered_course(self):
         for course in self.__course_list:
             print(f"{course}")
 

@@ -46,9 +46,8 @@ class User:
     def is_logged_in(self):
         return self.__is_logged_in
 
-    def log_in(self, password):
-        if self.check_password(password):
-            self.__is_logged_in = True
+    def log_in(self):
+        self.__is_logged_in = True
 
     def logout(self):
         self.__is_logged_in = False

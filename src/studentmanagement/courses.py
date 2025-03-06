@@ -2,7 +2,7 @@
 class Course:
     def __init__(self, course_id):
         self.__course_id = course_id
-        self.__course_dictionary = {}
+        self.__student_list = []
 
     @property
     def course_id(self):
@@ -12,9 +12,8 @@ class Course:
     def course_id(self, course_id):
         self.__course_id = course_id
 
-    def add_student(self):
-        self.__course_dictionary[self.__course_id] = []
+    def get_student_list(self):
+        return self.__student_list
 
-    def get_course_dictionary(self):
-        return self.__course_dictionary
+
 
