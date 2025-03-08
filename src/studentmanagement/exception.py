@@ -23,3 +23,11 @@ class emailException(Exception):
     def __init__(self,email):
         message = f"{email} is not a valid email"
         super().__init__(message)
+
+class nameValidationException(Exception):
+    pass
+
+class nameException(nameValidationException):
+    def __init__(self):
+        message = f"It is not a valid name, require only letters"
+        super().__init__(message)
