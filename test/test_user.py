@@ -16,7 +16,7 @@ class TestUser(TestCase):
         self.assertFalse(self.user.is_logged_in)
 
     def test_if_logged_in(self):
-        self.user.log_in("password")
+        self.user.log_in()
         self.assertTrue(self.user.is_logged_in)
         self.user.logout()
         self.assertFalse(self.user.is_logged_in)

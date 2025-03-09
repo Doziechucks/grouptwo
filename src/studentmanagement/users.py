@@ -1,6 +1,7 @@
 from src.studentmanagement.courses import Course
 from src.studentmanagement.facilitator import Facilitator
 from src.studentmanagement.students import StudentManagement
+from src.studentmanagement.admin import CourseAdmin
 
 
 class UserManagement:
@@ -8,6 +9,7 @@ class UserManagement:
         self.__student_list: list[StudentManagement] = []
         self.__facilitator_list: list[Facilitator] = []
         self.__course_list: list[Course] = []
+        self.__admin_list: list[CourseAdmin] = []
 
     def create_student_list(self, firstname, lastname, email, password):
         student_information = StudentManagement(firstname, lastname, email, password)
@@ -18,8 +20,13 @@ class UserManagement:
         self.__facilitator_list.append(facilitator_information)
 
     def create_course_list(self, course_id):
-        course_information = Course(course_id, )
+        course_information = Course(course_id)
         self.__course_list.append(course_information)
+
+    def create_admin_list(self, firstname, lastname, email, password):
+        course_admins = CourseAdmin(firstname, lastname, email, password)
+        self.__admin_list.append(course_admins)
+
 
     def check_if_student_offers_course(self, course_id, email):
         for student in self.__student_list:
@@ -73,6 +80,75 @@ class UserManagement:
                 for students in courses.get_student_list():
                     return students
         raise ValueError("cant perform this action")
+
+    def create_admin(self, firstname, lastname, email, password):
+        course_admin = CourseAdmin(firstname, lastname, email, password)
+        self.__admin_list.append(course_admin)
+
+    def get_list_of_courses(self):
+        for admin in self.__admin_list:
+            for courses in admin.get_course_and_instructor():
+                print(courses)
+
+    def add_course_to_facilitator(self, facilitator_email):
+        for facilitator in self.__facilitator_list:
+            if facilitator.email == facilitator_email:
+                facilitator.add_course_to_facilitator_dict()
+
+    def add_students_email_to_facilitator_course(self, facilitator_email):
+        for facilitator in self.__facilitator_list:
+            if facilitator.email == facilitator_email:
+                self.add_course_to_facilitator(facilitator_email)
+                facilitator.add_student_emails_to_course()
+            else:
+                raise ValueError("no facilitator with this email")
+
+    def printing_courses_of_a_facilitator(self, facilitator_email):
+        for facilitator in self.__facilitator_list:
+            if facilitator.email == facilitator_email:
+                self.add_course_to_facilitator(facilitator_email)
+                facilitator.print_facilitator_course_list()
+
+    def grade_a_particular_course(self, course_id, student_email, student_grade, facilitator_email):
+        for facilitator in self.__facilitator_list:
+            if facilitator.email == facilitator_email:
+                self.add_students_email_to_facilitator_course(facilitator_email)
+                facilitator.grade_course(course_id)
+                facilitator.course_grades(course_id, student_email, student_grade)
+
+    def print_a_course_grade_for_a_facilitator(self, facilitator_email):
+        for facilitator in self.__facilitator_list:
+            if facilitator.email == facilitator_email:
+                facilitator.print_facilitator_grades()
+
+    def print_courses_and_students_of_a_facilitator(self, facilitator_email):
+        for facilitator in self.__facilitator_list:
+            if facilitator.email == facilitator_email:
+                self.add_course_to_facilitator(facilitator_email)
+                facilitator.print_facilitator_course_list()
+
+    def create_course_by_admin(self, admin_email, course_id, facilitator_name ,facilitator_email):
+        for admin in self.__admin_list:
+            if admin.email == admin_email:
+                admin.create_course(course_id, facilitator_name, facilitator_email)
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
