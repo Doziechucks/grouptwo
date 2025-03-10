@@ -1,5 +1,3 @@
-
-
 class Student(User):
     def _init_(self, full_name: str, password: str, email: str, student_id: str):
         self.full_name = full_name
