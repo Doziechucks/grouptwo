@@ -1,4 +1,4 @@
-from Student import Student
+from StudentAkabs import Student
 class main:
 
     def _init_(self):
