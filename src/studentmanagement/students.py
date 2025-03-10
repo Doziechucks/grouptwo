@@ -1,5 +1,4 @@
 from src.studentmanagement.user import User
-from src.studentmanagement.admin import CourseAdmin
 
 
 class StudentManagement(User):

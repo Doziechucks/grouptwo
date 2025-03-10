@@ -1,7 +1,6 @@
 from src.studentmanagement.courses import Course
 from src.studentmanagement.facilitator import Facilitator
 from src.studentmanagement.students import StudentManagement
-from src.studentmanagement.admin import CourseAdmin
 
 
 class UserManagement:
@@ -9,7 +8,6 @@ class UserManagement:
         self.__student_list: list[StudentManagement] = []
         self.__facilitator_list: list[Facilitator] = []
         self.__course_list: list[Course] = []
-        self.__admin_list: list[CourseAdmin] = []
 
     def create_student_list(self, firstname, lastname, email, password):
         student_information = StudentManagement(firstname, lastname, email, password)
@@ -22,11 +20,6 @@ class UserManagement:
     def create_course_list(self, course_id):
         course_information = Course(course_id)
         self.__course_list.append(course_information)
-
-    def create_admin_list(self, firstname, lastname, email, password):
-        course_admins = CourseAdmin(firstname, lastname, email, password)
-        self.__admin_list.append(course_admins)
-
 
     def check_if_student_offers_course(self, course_id, email):
         for student in self.__student_list:
@@ -60,6 +53,17 @@ class UserManagement:
                 student.log_in()
         raise ValueError("Invalid details")
 
+    def facilitator_loging(self, email, password):
+        for facilitator in self.__facilitator_list:
+            if facilitator.email == email and facilitator.check_password(password):
+                facilitator.log_in()
+        raise ValueError("Invalid details")
+
+    def facilitator_logout(self, email):
+        for facilitator in self.__facilitator_list:
+            if facilitator.email == email:
+                facilitator.logout()
+
     def logout(self, email):
         for student in self.__student_list:
             if student.email == email and student.is_logged_in == True:
@@ -81,24 +85,14 @@ class UserManagement:
                     return students
         raise ValueError("cant perform this action")
 
-    def create_admin(self, firstname, lastname, email, password):
-        course_admin = CourseAdmin(firstname, lastname, email, password)
-        self.__admin_list.append(course_admin)
-
-    def get_list_of_courses(self):
-        for admin in self.__admin_list:
-            for courses in admin.get_course_and_instructor():
-                print(courses)
-
-    def add_course_to_facilitator(self, facilitator_email):
+    def create_course_by_a_facilitator(self, facilitator_email, course_id):
         for facilitator in self.__facilitator_list:
             if facilitator.email == facilitator_email:
-                facilitator.add_course_to_facilitator_dict()
+                facilitator.create_course_by_facilitator(course_id)
 
     def add_students_email_to_facilitator_course(self, facilitator_email):
         for facilitator in self.__facilitator_list:
             if facilitator.email == facilitator_email:
-                self.add_course_to_facilitator(facilitator_email)
                 facilitator.add_student_emails_to_course()
             else:
                 raise ValueError("no facilitator with this email")
@@ -106,7 +100,6 @@ class UserManagement:
     def printing_courses_of_a_facilitator(self, facilitator_email):
         for facilitator in self.__facilitator_list:
             if facilitator.email == facilitator_email:
-                self.add_course_to_facilitator(facilitator_email)
                 facilitator.print_facilitator_course_list()
 
     def grade_a_particular_course(self, course_id, student_email, student_grade, facilitator_email):
@@ -124,13 +117,13 @@ class UserManagement:
     def print_courses_and_students_of_a_facilitator(self, facilitator_email):
         for facilitator in self.__facilitator_list:
             if facilitator.email == facilitator_email:
-                self.add_course_to_facilitator(facilitator_email)
                 facilitator.print_facilitator_course_list()
 
-    def create_course_by_admin(self, admin_email, course_id, facilitator_name ,facilitator_email):
-        for admin in self.__admin_list:
-            if admin.email == admin_email:
-                admin.create_course(course_id, facilitator_name, facilitator_email)
+    def create_course_by_facilitator(self, facilitator_email, course_id):
+        for facilitator in self.__facilitator_list:
+            if facilitator.email == facilitator_email:
+                facilitator.create_course_by_facilitator(course_id)
+
 
     
 

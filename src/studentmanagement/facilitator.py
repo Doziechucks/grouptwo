@@ -1,12 +1,10 @@
 from src.studentmanagement.user import User
-from src.studentmanagement.admin import CourseAdmin
 from src.studentmanagement.students import StudentManagement
 from src.studentmanagement.courses import Course
 
 class Facilitator(User):
     def __init__(self, firstname, lastname, email, password):
         super().__init__(firstname, lastname, email, password)
-        self.__admin_list: list[CourseAdmin] = []
         self.__student_list: list[StudentManagement] = []
         self.__course_list: list[Course] = []
         self.__facilitator_course_dict = {}
@@ -21,18 +19,9 @@ class Facilitator(User):
         course_information = Course(course_id)
         self.__course_list.append(course_information)
 
-    def create_admin(self, firstname, lastname, email, password):
-        course_admin = CourseAdmin(firstname, lastname, email, password)
-        self.__admin_list.append(course_admin)
-
-    def add_course_to_facilitator_dict(self):
-        for admin in self.__admin_list:
-            for facilitator in admin.get_course_facilitator():
-                if facilitator == self.__email:
-                    self.__facilitator_course_dict[admin.get_course_id()] = []
-                    self.__facilitator_course_list.append(admin.get_course_id())
-
-
+    def create_course_by_facilitator(self, course_id):
+        self.__facilitator_course_dict[course_id] = []
+        self.__facilitator_course_list.append(course_id())
 
     def add_student_emails_to_course(self):
         for student in self.__student_list:
