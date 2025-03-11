@@ -1,6 +1,9 @@
 from src.studentmanagement.courses import Course
 from src.studentmanagement.facilitator import Facilitator
 from src.studentmanagement.students import StudentManagement
+from src.studentmanagement.writetofile import WriteToFile
+import os
+
 
 
 class UserManagement:
@@ -8,18 +11,40 @@ class UserManagement:
         self.__student_list: list[StudentManagement] = []
         self.__facilitator_list: list[Facilitator] = []
         self.__course_list: list[Course] = []
+        self.__all_emails_list: list[str] = []
 
     def create_student_list(self, firstname, lastname, email, password):
-        student_information = StudentManagement(firstname, lastname, email, password)
-        self.__student_list.append(student_information)
+        if len(self.__student_list) == 0 and os.path.exists("students.txt"):
+            my_list = WriteToFile.read_from_file("students.txt")
+            self.__student_list = [my_object for my_object in my_list]
+            for student in self.__student_list:
+                self.__all_emails_list.append(student.email)
+        else:
+            student_information = StudentManagement(firstname, lastname, email, password)
+            self.__student_list.append(student_information)
+            self.__all_emails_list.append(student_information.email)
+            WriteToFile.add_to_file("students.txt", student_information)
 
     def create_facilitator_list(self, firstname, lastname, email, password):
-        facilitator_information = Facilitator(firstname, lastname, email, password)
-        self.__facilitator_list.append(facilitator_information)
+        if len(self.__facilitator_list) == 0 and os.path.exists("facilitators.txt"):
+            my_list = WriteToFile.read_from_file("facilitators.txt")
+            self.__facilitator_list = [my_object for my_object in my_list]
+            for facilitator in self.__facilitator_list:
+                self.__all_emails_list.append(facilitator.email)
+        else:
+            facilitator_information = Facilitator(firstname, lastname, email, password)
+            self.__facilitator_list.append(facilitator_information)
+            self.__all_emails_list.append(facilitator_information.email)
+            WriteToFile.add_to_file("facilitators.txt", facilitator_information)
 
     def create_course_list(self, course_id):
-        course_information = Course(course_id)
-        self.__course_list.append(course_information)
+        if len(self.__course_list) == 0 and os.path.exists("courses.txt"):
+            my_list = WriteToFile.read_from_file("courses.txt")
+            self.__course_list = [my_object for my_object in my_list]
+        else:
+            course_information = Course(course_id)
+            self.__course_list.append(course_information)
+            WriteToFile.add_to_file("courses.txt", course_information)
 
     def check_if_student_offers_course(self, course_id, email):
         for student in self.__student_list:
@@ -50,13 +75,13 @@ class UserManagement:
     def student_login(self, email, password):
         for student in self.__student_list:
             if student.email == email and student.check_password(password):
-                student.log_in()
+                student.log_in(password)
         raise ValueError("Invalid details")
 
     def facilitator_loging(self, email, password):
         for facilitator in self.__facilitator_list:
             if facilitator.email == email and facilitator.check_password(password):
-                facilitator.log_in()
+                facilitator.log_in(password)
         raise ValueError("Invalid details")
 
     def facilitator_logout(self, email):
@@ -123,6 +148,8 @@ class UserManagement:
         for facilitator in self.__facilitator_list:
             if facilitator.email == facilitator_email:
                 facilitator.create_course_by_facilitator(course_id)
+
+
 
 
     
