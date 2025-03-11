@@ -18,7 +18,7 @@ class UserManagement:
         self.__facilitator_list.append(facilitator_information)
 
     def create_course_list(self, course_id):
-        course_information = Course(course_id, )
+        course_information = Course(course_id)
         self.__course_list.append(course_information)
 
     def check_if_student_offers_course(self, course_id, email):
@@ -53,6 +53,17 @@ class UserManagement:
                 student.log_in()
         raise ValueError("Invalid details")
 
+    def facilitator_loging(self, email, password):
+        for facilitator in self.__facilitator_list:
+            if facilitator.email == email and facilitator.check_password(password):
+                facilitator.log_in()
+        raise ValueError("Invalid details")
+
+    def facilitator_logout(self, email):
+        for facilitator in self.__facilitator_list:
+            if facilitator.email == email:
+                facilitator.logout()
+
     def logout(self, email):
         for student in self.__student_list:
             if student.email == email and student.is_logged_in == True:
@@ -73,6 +84,64 @@ class UserManagement:
                 for students in courses.get_student_list():
                     return students
         raise ValueError("cant perform this action")
+
+    def create_course_by_a_facilitator(self, facilitator_email, course_id):
+        for facilitator in self.__facilitator_list:
+            if facilitator.email == facilitator_email:
+                facilitator.create_course_by_facilitator(course_id)
+
+    def add_students_email_to_facilitator_course(self, facilitator_email):
+        for facilitator in self.__facilitator_list:
+            if facilitator.email == facilitator_email:
+                facilitator.add_student_emails_to_course()
+            else:
+                raise ValueError("no facilitator with this email")
+
+    def printing_courses_of_a_facilitator(self, facilitator_email):
+        for facilitator in self.__facilitator_list:
+            if facilitator.email == facilitator_email:
+                facilitator.print_facilitator_course_list()
+
+    def grade_a_particular_course(self, course_id, student_email, student_grade, facilitator_email):
+        for facilitator in self.__facilitator_list:
+            if facilitator.email == facilitator_email:
+                self.add_students_email_to_facilitator_course(facilitator_email)
+                facilitator.grade_course(course_id)
+                facilitator.course_grades(course_id, student_email, student_grade)
+
+    def print_a_course_grade_for_a_facilitator(self, facilitator_email):
+        for facilitator in self.__facilitator_list:
+            if facilitator.email == facilitator_email:
+                facilitator.print_facilitator_grades()
+
+    def print_courses_and_students_of_a_facilitator(self, facilitator_email):
+        for facilitator in self.__facilitator_list:
+            if facilitator.email == facilitator_email:
+                facilitator.print_facilitator_course_list()
+
+    def create_course_by_facilitator(self, facilitator_email, course_id):
+        for facilitator in self.__facilitator_list:
+            if facilitator.email == facilitator_email:
+                facilitator.create_course_by_facilitator(course_id)
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
