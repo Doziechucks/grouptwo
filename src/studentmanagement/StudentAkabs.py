@@ -1,3 +1,6 @@
+from src.studentmanagement.user import User
+
+
 class Student(User):
     def _init_(self, full_name: str, password: str, email: str, student_id: str):
         self.full_name = full_name
@@ -13,3 +16,7 @@ class Student(User):
     @student_id.setter
     def student_id(self, student_id: str):
         self.__student_id = student_id
+
+
+def user():
+    return None

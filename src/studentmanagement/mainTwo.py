@@ -1,4 +1,4 @@
-from StudentAkabs import Student
+from StudentAkabs import user
 class main:
 
     def _init_(self):
@@ -41,7 +41,7 @@ class main:
                     Try again.
                     """)
                 if role == "student".lower():
-                    new_buddy = Student(email, name, password, role)
+                    new_buddy = Students(email, name, password, role)
                 elif role == "instructor".lower():
                     new_buddy = Instructor(email, name, password, role)
                 else:
@@ -173,8 +173,3 @@ class MainMenu:
 
     def print_line(self):
         print("====================================================================================================================================================")
-
-
-
-
-MainMenu().main_menu(2)
