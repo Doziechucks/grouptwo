@@ -1,12 +1,14 @@
-# This is a sample Python script.
+from src.studentmanagement.users import UserManagement
 
 # Press ⌃R to execute it or replace it with your code.
 # Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+ # Press ⌘F8 to toggle the breakpoint.
+user = UserManagement()
+email = input("enter email: ")
+password = input("enter password: ")
+user.student_login(email, password)
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
 
 
 # Press the green button in the gutter to run the script.

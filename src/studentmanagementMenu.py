@@ -1,5 +1,4 @@
-import pickle
-import json
+
 import re
 from unittest import case
 
@@ -8,8 +7,7 @@ from pyexpat.errors import messages
 from src.studentmanagement.exception import passwordException, passwordValidateException, emailException, \
     validate_email, nameValidationException, nameException
 
-global facilitator_email
-facilitatorEmail = ''
+
 
 def mainMenu():
     while True:
@@ -32,20 +30,30 @@ def mainMenu():
                     print("Enter correct input!!!")
 
 
-def facilitatorLogin():
-            print("""
-            Welcome to facilitator login
-            
-            """)
-            facilitator_password = input("Please enter your facilitator password: ")
-            if len(facilitator_password) < 8:
+def facilitatorRegister():
+            firstName = input("Please enter your first name: ")
+            try:
+                if not re.search("[A-Za-z]", firstName):
+                    raise nameException
+            except nameValidationException as e:
+                print(f"Invalid first name: {e}")
+
+            secondName = input("Please enter your last name: ")
+            try:
+                if not re.search("[A-Za-z]", secondName):
+                    raise nameException
+            except nameValidationException as e:
+                print(f"Invalid last name: {e}")
+
+            facilitatorPassword = input("Please enter your facilitator password: ")
+            if len(facilitatorPassword) < 8:
                 print("Your facilitator password must be at least 8 characters long")
                 facilitatorLogin()
             else:
                 print("Your facilitator password saved successfully.")
 
             try:
-                if not re.search("[A-Za-z0-9]", facilitator_password):
+                if not re.search("[A-Za-z0-9]", facilitatorPassword):
                     raise passwordException
             except passwordValidateException as e:
                 print(f"invalid password: {e}")
@@ -54,10 +62,7 @@ def facilitatorLogin():
                 facilitator_email = input("Please enter your facilitator email: ")
                 validateEmail = validate_email(facilitator_email)
 
-                # if facilitator_email != facilitatorEmail:
-                #     print("Enter correct Email!!!")
-                # else:
-                #     facilitatorLogin()
+
                 print(f"Valid facilitator emailAddress: {validateEmail} saved successfully")
                 pattern = r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
                 if not re.match(pattern, facilitator_email):
@@ -67,42 +72,21 @@ def facilitatorLogin():
                 print(f"Invalid email: {e}")
 
 
-def facilitatorRegister():
-    menu = input("""
-        ~~~~Facilitator register platform ~~~~
-        1. Register to facilitator
-        2.Create course and assign grades
-        3. View Student courses
-        0.Logout
-    """)
-    match(menu):
-        case "1":
-            register()
-        case "0":
-            mainMenu()
-        case _:
-            print("Enter correct input!!!")
+def facilitatorLogin():
+    facilitator_password = input("Please enter your facilitator password: ")
 
-def register():
-    firstName = input("Please enter your first name: ")
+    if len(facilitator_password) < 8:
+        print("Your facilitator password must be at least 8 characters long")
+        facilitatorLogin()
     try:
-        if not re.search("[A-Za-z]", firstName):
-            raise nameException
-    except nameValidationException as e:
-        print(f"Invalid first name: {e}")
-        register()
-    secondName = input("Please enter your last name: ")
-    try:
-        if not re.search("[A-Za-z]", secondName):
-            raise nameException
-    except nameValidationException as e:
-            print(f"Invalid last name: {e}")
-            register()
+        if not re.search("[A-Za-z0-9]", facilitator_password):
+            raise passwordException
+    except passwordValidateException as e:
+        print(f"invalid password: {e}")
 
     facilitatorEmail = input("Please enter your facilitator email: ")
     try:
         validateEmail = validate_email(facilitatorEmail)
-        print(f"Valid emailAddress: {validateEmail} saved successfully")
 
         pattern = r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
         if not re.match(pattern, facilitatorEmail):
@@ -110,15 +94,8 @@ def register():
         return facilitatorEmail
     except emailException as e:
         print(f"Invalid email: {e}")
-        register()
-
-
-
-
-
-# def createCourseAndAssignGrades():
-
-
+        if facilitator_password == facilitatorPassword:
+            print("hi")
 
 
 mainMenu()
