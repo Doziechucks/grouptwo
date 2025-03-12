@@ -6,6 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="64723e99-215b-449a-9894-dc2d97e1a06b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/student_course_management_system/course.py" beforeDir="false" afterPath="$PROJECT_DIR$/student_course_management_system/grouptwo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/student_course_management_system/student.py" beforeDir="false" afterPath="$PROJECT_DIR$/student_course_management_system/studenttwo.py" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/test/coursesOfferedTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/coursesOfferedTest.py" afterDir="false" />
+>>>>>>> f22a01b6b5340aa96ea10cad8649a550da6fd4f8
+=======
+>>>>>>> 98e874a8206e643ea0d4b7450bf6209e60d09cbf
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +46,8 @@
 <<<<<<< HEAD
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+<<<<<<< HEAD
+=======
     &quot;Python tests.Python tests for coursesOfferedTest.MyTestCase.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.Python tests for coursesOfferedTest.MyTestCase.test_that_create_courses.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.Python tests for facilitator.MyTestCase.executor&quot;: &quot;Run&quot;,
@@ -44,6 +55,7 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/DELL/Desktop/grouptwo&quot;,
+>>>>>>> 98e874a8206e643ea0d4b7450bf6209e60d09cbf
 =======
 <<<<<<< HEAD
   <component name="PropertiesComponent">{
@@ -53,6 +65,7 @@
     &quot;Python tests.Python tests for test_user.TestUser.test_if_logged_in.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.Python tests for test_user.TestUser.test_if_logged_in_by_default.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.Python tests for test_user.TestUser.test_if_password_is_changed.executor&quot;: &quot;Run&quot;,
+>>>>>>> f22a01b6b5340aa96ea10cad8649a550da6fd4f8
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
@@ -65,6 +78,11 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
 <<<<<<< HEAD
+<<<<<<< HEAD
+  }
+}</component>
+=======
+>>>>>>> 98e874a8206e643ea0d4b7450bf6209e60d09cbf
 =======
   }
 }</component>
@@ -247,6 +265,7 @@
       </list>
     </recent_temporary>
   </component>
+>>>>>>> f22a01b6b5340aa96ea10cad8649a550da6fd4f8
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -265,6 +284,10 @@
       <updated>1740993344134</updated>
       <workItem from="1740993347194" duration="270000" />
 <<<<<<< HEAD
+      <workItem from="1741252800467" duration="20000" />
+      <workItem from="1741252857105" duration="72000" />
+=======
+<<<<<<< HEAD
       <workItem from="1741007374351" duration="10188000" />
       <workItem from="1741077648337" duration="14679000" />
 =======
@@ -280,7 +303,11 @@
 =======
       <workItem from="1741019488125" duration="7021000" />
 >>>>>>> origin/main
+<<<<<<< HEAD
+>>>>>>> f22a01b6b5340aa96ea10cad8649a550da6fd4f8
+=======
 >>>>>>> 64eb4b82604a737d12ed3722806fa98b64f106bd
+>>>>>>> 98e874a8206e643ea0d4b7450bf6209e60d09cbf
     </task>
     <servers />
   </component>
