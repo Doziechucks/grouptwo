@@ -71,8 +71,7 @@ def facilitatorLogin():
     facilitator_email = input("Please enter your facilitator email: ")
     facilitator_pass = input("Please enter your facilitator password: ")
     users.facilitator_loging(facilitator_email, facilitator_pass)
-    if users.is
-
+    if users.check_facilitator_logged_in():
 
 
         login = input("""
