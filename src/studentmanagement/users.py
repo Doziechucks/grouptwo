@@ -149,16 +149,16 @@ class UserManagement:
             if facilitator.email == facilitator_email:
                 facilitator.create_course_by_facilitator(course_id)
 
-    def check_facilitator_logged_in(self):
+    def check_facilitator_logged_in(self, facilitator_email):
         for facilitator in self.__facilitator_list:
-            if facilitator.is_logged_in:
+            if facilitator.email == facilitator_email and facilitator.is_logged_in == True:
                 return True
             else:
                 return False
 
-    def check_student_logged_in(self):
+    def check_student_logged_in(self, student_email):
         for student in self.__student_list:
-            if student.is_logged_in:
+            if student.email == student_email and student.is_logged_in:
                 return True
             else:
                 return False
