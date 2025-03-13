@@ -82,7 +82,7 @@ class UserManagement:
         for facilitator in self.__facilitator_list:
             if facilitator.email == email and facilitator.check_password(password):
                 facilitator.log_in(password)
-        
+
 
     def facilitator_logout(self, email):
         for facilitator in self.__facilitator_list:
