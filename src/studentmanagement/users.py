@@ -76,13 +76,13 @@ class UserManagement:
         for student in self.__student_list:
             if student.email == email and student.check_password(password):
                 student.log_in(password)
-        raise ValueError("Invalid details")
+
 
     def facilitator_loging(self, email, password):
         for facilitator in self.__facilitator_list:
             if facilitator.email == email and facilitator.check_password(password):
                 facilitator.log_in(password)
-        raise ValueError("Invalid details")
+        
 
     def facilitator_logout(self, email):
         for facilitator in self.__facilitator_list:
