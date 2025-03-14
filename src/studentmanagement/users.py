@@ -155,6 +155,7 @@ class UserManagement:
         for facilitator in self.__facilitator_list:
             if facilitator.email == facilitator_email:
                 facilitator.create_course_by_facilitator(course_id)
+                self.__course_list.append(course_id)
 
     def check_facilitator_logged_in(self, facilitator_email):
         for facilitator in self.__facilitator_list:
