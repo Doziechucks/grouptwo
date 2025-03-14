@@ -149,9 +149,9 @@ def facilitator_choice(email):
         case "2":
             show_courses(email)
         case "3":
-            get_course_students()
+            get_course_students(email)
         case "4":
-            grade_student()
+            grade_student(email)
         case _:
             main_menu()
 
