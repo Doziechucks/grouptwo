@@ -30,8 +30,10 @@ class Facilitator(User):
                     self.__facilitator_course_dict[course.course_id].append(student.email)
 
     def print_facilitator_course_list(self):
+        courses = ""
         for course in self.__facilitator_course_list:
-            print(course)
+            courses = courses + course + "\n"
+            return courses
 
     def grade_course(self, course_id):
         self.__facilitator_grade[course_id] = []
