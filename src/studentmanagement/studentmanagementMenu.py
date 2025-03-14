@@ -88,6 +88,8 @@ def register(check):
     try:
         if not re.search("[A-Za-z0-9]", facilitator_password) or len(facilitator_password) < 4:
             raise passwordException
+        else:
+            print("Your password saved successfully.")
     except passwordValidateException as e:
         print(f"invalid password: {e}")
 

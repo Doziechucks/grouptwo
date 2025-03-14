@@ -23,4 +23,12 @@ class TestUserManagement(TestCase):
         expected = "email"
         self.assertEqual(expected, actual)
 
+    def test_facilitator_list_increases_with_add(self):
+        self.manager.create_facilitator_list("firstname1", "lastname", "email", "password")
+        self.assertEqual(2, self.manager.facilitator_length())
 
+    def test_if_facilitator_can_login(self):
+        self.manager.create_facilitator_list("firstname1", "lastname", "email", "password")
+        self.manager.facilitator_loging("email", "password")
+        actual = self.manager.check_facilitator_logged_in("email")
+        self.assertEqual(True, actual)

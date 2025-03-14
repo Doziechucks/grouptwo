@@ -36,7 +36,7 @@ class User:
         self.__email = email
 
     def check_password(self, password):
-        if Crypting.verify_password(password, self._set_password):
+        if Crypting.verify_password(password, self.__password):
             return True
         else:
             return False
