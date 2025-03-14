@@ -1,5 +1,5 @@
 from StudentAkabs import user
-class main:
+class maintwo:
 
     def _init_(self):
         self.users = []
@@ -41,9 +41,9 @@ class main:
                     Try again.
                     """)
                 if role == "student".lower():
-                    new_buddy = Students(email, name, password, role)
+                    new_buddy = user(email, name, password, role)
                 elif role == "instructor".lower():
-                    new_buddy = Instructor(email, name, password, role)
+                    new_buddy = user(email, name, password, role)
                 else:
                     print("Invalid role.")
                 self.users.append(new_buddy)
@@ -77,8 +77,8 @@ class main:
 
 class MainMenu:
     def _init_(self):
-        self.portal = Portal()
-        self.current_user = None
+        self.users = user()
+        self.current_users = None
         self.users = []
 
 
@@ -138,7 +138,7 @@ class MainMenu:
             elif reply == '5':
                 self.student.manage_account(self)
             elif reply == '6':
-                sys.exit()
+                user.exit()
             else:
                 return "Invalid input. Try again."
 
@@ -165,11 +165,9 @@ class MainMenu:
                 self.instructor.view_enrolled_students(self)
             elif decision == '5':
                 self.current_user = None
-                sys.exit()
+                user.exit()
             else:
                 return "Invalid input. Try again."
 
-
-
-    def print_line(self):
-        print("====================================================================================================================================================")
+   # def print_line(self):
+    #    print("====================================================================================================================================================")
