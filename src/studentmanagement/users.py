@@ -19,23 +19,19 @@ class UserManagement:
             self.__student_list = [my_object for my_object in my_list]
             for student in self.__student_list:
                 self.__all_emails_list.append(student.email)
+            self.write_student(firstname, lastname, email, password)
         else:
-            student_information = StudentManagement(firstname, lastname, email, password)
-            self.__student_list.append(student_information)
-            self.__all_emails_list.append(student_information.email)
-            WriteToFile.add_to_file("students.txt", student_information)
+            self.write_student(firstname, lastname, email, password)
 
     def create_facilitator_list(self, firstname, lastname, email, password):
         if len(self.__facilitator_list) == 0 and os.path.exists("facilitators.txt"):
             my_list = WriteToFile.read_from_file("facilitators.txt")
+            print(my_list)
             self.__facilitator_list = [my_object for my_object in my_list]
             for facilitator in self.__facilitator_list:
                 self.__all_emails_list.append(facilitator.email)
         else:
-            facilitator_information = Facilitator(firstname, lastname, email, password)
-            self.__facilitator_list.append(facilitator_information)
-            self.__all_emails_list.append(facilitator_information.email)
-            WriteToFile.add_to_file("facilitators.txt", facilitator_information)
+            self.write_facilitator(firstname, lastname, email, password)
 
     def create_course_list(self, course_id):
         if len(self.__course_list) == 0 and os.path.exists("courses.txt"):
@@ -73,12 +69,23 @@ class UserManagement:
                     print(course)
 
     def student_login(self, email, password):
+        if len(self.__student_list) == 0 and os.path.exists("students.txt"):
+            my_list = WriteToFile.read_from_file("students.txt")
+            self.__student_list = [my_object for my_object in my_list]
+            for student in self.__student_list:
+                self.__all_emails_list.append(student.email)
         for student in self.__student_list:
             if student.email == email and student.check_password(password):
                 student.log_in(password)
 
 
     def facilitator_loging(self, email, password):
+        if len(self.__facilitator_list) == 0 and os.path.exists("facilitators.txt"):
+            my_list = WriteToFile.read_from_file("facilitators.txt")
+            print(my_list)
+            self.__facilitator_list = [my_object for my_object in my_list]
+            for student in self.__student_list:
+                self.__all_emails_list.append(student.email)
         for facilitator in self.__facilitator_list:
             if facilitator.email == email and facilitator.check_password(password):
                 facilitator.log_in(password)
@@ -163,29 +170,19 @@ class UserManagement:
             else:
                 return False
 
-    
+    def write_student(self, firstname, lastname, email, password):
+        student_information = StudentManagement(firstname, lastname, email, password)
+        self.__student_list.append(student_information)
+        self.__all_emails_list.append(student_information.email)
+        WriteToFile.add_to_file("students.txt", student_information)
 
+    def write_facilitator(self, firstname, lastname, email, password):
+        facilitator_information = Facilitator(firstname, lastname, email, password)
+        self.__facilitator_list.append(facilitator_information)
+        self.__all_emails_list.append(facilitator_information.email)
+        WriteToFile.add_to_file("facilitators.txt", facilitator_information)
 
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    def facilitator_length(self):
+        return len(self.__facilitator_list)
 
 

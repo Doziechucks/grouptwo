@@ -21,7 +21,7 @@ class Facilitator(User):
 
     def create_course_by_facilitator(self, course_id):
         self.__facilitator_course_dict[course_id] = []
-        self.__facilitator_course_list.append(course_id())
+        self.__facilitator_course_list.append(course_id)
 
     def add_student_emails_to_course(self):
         for student in self.__student_list:
@@ -56,8 +56,8 @@ class Facilitator(User):
             for student in self.__facilitator_course_dict[course.course_id]:
                 print(student)
 
-    
-
+    def get_length_of_course_list(self):
+        return len(self.__facilitator_course_list)
 
 
 

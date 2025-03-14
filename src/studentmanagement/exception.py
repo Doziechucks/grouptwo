@@ -1,7 +1,5 @@
 import re
 
-from pyexpat.errors import messages
-
 
 class passwordValidateException(Exception):
     pass
