@@ -1,9 +1,11 @@
+from src.studentmanagement.cryting import Crypting
+
 class User:
     def __init__(self, first_name, last_name, email, password):
         self.__first_name = first_name
         self.__last_name = last_name
         self.__email = email
-        self.__password = password
+        self._set_password(password)
         self.__is_logged_in = False
 
     @property
@@ -18,6 +20,9 @@ class User:
     def last_name(self):
         return self.__last_name
 
+    def _set_password(self, password):
+        self.__password = Crypting.encrypt(password)
+
     @last_name.setter
     def last_name(self, last_name):
         self.__last_name = last_name
@@ -31,14 +36,14 @@ class User:
         self.__email = email
 
     def check_password(self, password):
-        if self.__password == password:
+        if Crypting.verify_password(password, self._set_password):
             return True
         else:
             return False
 
     def change_password(self, old_password, new_password):
         if self.check_password(old_password):
-            self.__password = new_password
+            self._set_password(new_password)
         else:
             raise ValueError("Password doesn't match")
 
@@ -46,8 +51,9 @@ class User:
     def is_logged_in(self):
         return self.__is_logged_in
 
-    def log_in(self):
-        self.__is_logged_in = True
+    def log_in(self, password):
+        if self.check_password(password):
+            self.__is_logged_in = True
 
     def logout(self):
         self.__is_logged_in = False
