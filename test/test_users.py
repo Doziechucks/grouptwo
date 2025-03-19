@@ -40,3 +40,8 @@ class TestUserManagement(TestCase):
         actual = self.manager.printing_courses_of_a_facilitator("email")
         expected = "CHE-101\nCHE-102\n"
         self.assertEqual(expected, actual)
+
+    def test_facilitator_login(self):
+        self.manager.create_facilitator_list("firstname1", "lastname", "email", "password")
+        self.manager.facilitator_loging("email", "password")
+        self.assertEqual(True, self.manager.check_facilitator_logged_in("email"))

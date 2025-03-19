@@ -2,6 +2,7 @@ from src.studentmanagement.users import UserManagement
 import re
 
 
+
 from src.studentmanagement.exception import passwordException, passwordValidateException, emailException, \
     validate_email, nameValidationException, nameException
 
@@ -182,7 +183,11 @@ def student_choice(email):
 
 def see_course_list(email):
     users.add_to_course_list()
-    print(users.get_all_courses())
+    course_available = users.get_all_courses()
+    if course_available == "":
+        print("no course available")
+    else:
+        print(course_available)
     student_choice(email)
 
 def register_a_course(email):
@@ -192,6 +197,7 @@ def register_a_course(email):
         print("Course registered successfully")
     else:
         print("Course does exist, not registered")
+    student_choice(email)
 
 
 def create_course(email):
@@ -202,7 +208,7 @@ def create_course(email):
 
 def show_courses(email):
     course = users.printing_courses_of_a_facilitator(email)
-    if course is None:
+    if course == "":
         print("you have not created any course")
     else: print(course)
     facilitator_choice(email)
@@ -220,6 +226,7 @@ def grade_student(email):
 
 def view_course_grade(email):
     pass
+    facilitator_choice(email)
 
 
 def logout_method():

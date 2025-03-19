@@ -65,7 +65,7 @@ class UserManagement:
 
     def check_if_course_is_in_course_list(self, course_id):
         for course in self.__course_list_names:
-            if course.course_id == course_id:
+            if course == course_id:
                 return True
             return False
 
@@ -77,24 +77,15 @@ class UserManagement:
                     print(course)
 
     def student_login(self, email, password):
-        if len(self.__student_list) == 0 and os.path.exists("students.txt"):
-            my_list = WriteToFile.read_from_file("students.txt")
-            self.__student_list = [my_object for my_object in my_list]
-            for student in self.__student_list:
-                self.__all_emails_list.append(student.email)
+        self.login_prompt()
         for student in self.__student_list:
             if student.email == email and student.check_password(password):
-
                 student.log_in(password)
 
 
 
     def facilitator_loging(self, email, password):
-        if len(self.__facilitator_list) == 0 and os.path.exists("facilitators.txt"):
-            my_list = WriteToFile.read_from_file("facilitators.txt")
-            self.__facilitator_list = [my_object for my_object in my_list]
-            for facilitator in self.__facilitator_list:
-                self.__all_emails_list.append(facilitator.email)
+        self.login_prompt()
         for facilitator in self.__facilitator_list:
             if facilitator.email == email and facilitator.check_password(password):
                 facilitator.log_in(password)
@@ -135,12 +126,13 @@ class UserManagement:
     def get_all_courses(self):
         courses = ""
         for course in self.__course_list:
-            courses = courses + str(course) + "\n"
+            courses = courses + str(course + "\n")
+        return courses
 
     def add_to_course_list(self):
         for facilitator in self.__facilitator_list:
             for course in facilitator.get_facilitator_course_list():
-                self.__course_list.append({str(course)} + "lecturers email:" + {str(facilitator.email)})
+                self.__course_list.append(str("course:"+ course + " lecturers email:" + facilitator.email))
                 self.__course_list_names.append(course)
 
 
@@ -155,10 +147,20 @@ class UserManagement:
 
     def printing_courses_of_a_facilitator(self, facilitator_email):
         for facilitator in self.__facilitator_list:
+
             if facilitator.email == facilitator_email:
                 return facilitator.print_facilitator_course_list()
             else:
                 raise ValueError("no facilitator with this email")
+
+    def printing_courses_of_facilitators(self):
+        courses = ""
+        for facilitator in self.__facilitator_list:
+            facilitator.print_facilitator_course_list()
+            courses = courses + facilitator.print_facilitator_course_list() + "\n"
+        return courses
+
+
 
     def grade_a_particular_course(self, course_id, student_email, student_grade, facilitator_email):
         for facilitator in self.__facilitator_list:
@@ -221,4 +223,15 @@ class UserManagement:
         for course in self.__course_list:
             WriteToFile.add_to_file("courses.txt", course)
 
+    def login_prompt(self):
+        if len(self.__facilitator_list) == 0 and os.path.exists("facilitators.txt"):
+            my_list = WriteToFile.read_from_file("facilitators.txt")
+            self.__facilitator_list = [my_object for my_object in my_list]
+            for facilitator in self.__facilitator_list:
+                self.__all_emails_list.append(facilitator.email)
 
+        if len(self.__student_list) == 0 and os.path.exists("students.txt"):
+            my_list = WriteToFile.read_from_file("students.txt")
+            self.__student_list = [my_object for my_object in my_list]
+            for student in self.__student_list:
+                self.__all_emails_list.append(student.email)
