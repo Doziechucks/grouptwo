@@ -15,7 +15,7 @@ def main_menu():
         2. Facilitator login
         3. Student register
         4. Student login
-        0.Back
+        5. exit application
     """)
         match menu:
                 case "1":
@@ -26,8 +26,9 @@ def main_menu():
                     student_register()
                 case "4":
                     student_login()
-                case "0":
-                    main_menu()
+                case "5":
+                    logout_method()
+                    exit()
                 case _:
                     print("Enter correct input!!!")
 
@@ -45,13 +46,20 @@ def student_register():
 
 def student_login():
     checker = 2
-    login_in(checker)
+    student_logger = login_in(checker)
+    if student_logger != "":
+        student_choice(student_logger)
+
+
 
 def facilitator_login():
     checker = 1
     logger = login_in(checker)
     if logger != "":
         facilitator_choice(logger)
+    else:
+        print("Enter correct input!!!")
+        main_menu()
 
 
 
@@ -62,7 +70,6 @@ def login_in(checker):
     password = input("Please enter your password: ")
     if checker == 1:
         users.facilitator_loging(email, password)
-        print(users.check_facilitator_logged_in(email))
         while not users.check_facilitator_logged_in(email):
             print("Invalid login attempt")
             email = input("Please enter your facilitator email: ")
@@ -141,6 +148,7 @@ def facilitator_choice(email):
     2. show my courses
     3. get student offering a course
     4. grade student
+    5. press any other key to logout
     """)
 
     match option:
@@ -155,14 +163,49 @@ def facilitator_choice(email):
         case _:
             main_menu()
 
+def student_choice(email):
+    option = input("""
+    1. see list of available courses and lecturers
+    2. register for a course
+    3. view grade for course
+    4. logout
+    """)
+    match option:
+        case "1":
+            see_course_list(email)
+        case "2":
+            register_a_course(email)
+        case "3":
+            view_course_grade(email)
+        case "4":
+            main_menu()
+
+def see_course_list(email):
+    users.add_to_course_list()
+    print(users.get_all_courses())
+    student_choice(email)
+
+def register_a_course(email):
+    course_id = input("Please enter course id: ")
+    if users.check_if_course_is_in_course_list(course_id):
+        users.add_course(course_id, email)
+        print("Course registered successfully")
+    else:
+        print("Course does exist, not registered")
+
+
 def create_course(email):
     course_id = input("Please enter course id: ")
-    users.create_course_by_facilitator(course_id, email)
+    users.create_course_by_facilitator(email, course_id)
+    print("Course created successfully")
     facilitator_choice(email)
 
 def show_courses(email):
-     users.printing_courses_of_a_facilitator(email)
-     facilitator_choice(email)
+    course = users.printing_courses_of_a_facilitator(email)
+    if course is None:
+        print("you have not created any course")
+    else: print(course)
+    facilitator_choice(email)
 
 def get_course_students(email):
     users.print_a_course_grade_for_a_facilitator(email)
@@ -174,6 +217,13 @@ def grade_student(email):
     grade = input("Please enter grade for student: ")
     users.grade_a_particular_course(course_id, student_email, grade, email)
     facilitator_choice(email)
+
+def view_course_grade(email):
+    pass
+
+def logout_method():
+    users.logout_method()
+
 
 
 

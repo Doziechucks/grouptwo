@@ -15,11 +15,10 @@ class Facilitator(User):
         student_information = StudentManagement(firstname, lastname, email, password)
         self.__student_list.append(student_information)
 
-    def create_course_list(self, course_id):
-        course_information = Course(course_id)
-        self.__course_list.append(course_information)
 
     def create_course_by_facilitator(self, course_id):
+        course_information = Course(course_id)
+        self.__course_list.append(course_information)
         self.__facilitator_course_dict[course_id] = []
         self.__facilitator_course_list.append(course_id)
 
@@ -33,7 +32,7 @@ class Facilitator(User):
         courses = ""
         for course in self.__facilitator_course_list:
             courses = courses + course + "\n"
-            return courses
+        return courses
 
     def grade_course(self, course_id):
         self.__facilitator_grade[course_id] = []
@@ -60,6 +59,9 @@ class Facilitator(User):
 
     def get_length_of_course_list(self):
         return len(self.__facilitator_course_list)
+
+    def get_facilitator_course_list(self):
+        return self.__facilitator_course_list
 
 
 

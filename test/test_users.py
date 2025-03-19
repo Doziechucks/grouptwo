@@ -32,3 +32,11 @@ class TestUserManagement(TestCase):
         self.manager.facilitator_loging("email", "password")
         actual = self.manager.check_facilitator_logged_in("email")
         self.assertEqual(True, actual)
+
+    def test_if_facilitator_course_list_is_printed(self):
+        self.manager.create_facilitator_list("firstname1", "lastname", "email", "password")
+        self.manager.create_course_by_a_facilitator("email", "CHE-101")
+        self.manager.create_course_by_a_facilitator("email", "CHE-102")
+        actual = self.manager.printing_courses_of_a_facilitator("email")
+        expected = "CHE-101\nCHE-102\n"
+        self.assertEqual(expected, actual)
