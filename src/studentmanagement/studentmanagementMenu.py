@@ -139,9 +139,10 @@ def register(check):
 
     if check == 1:
         users.create_facilitator_list(firstname, lastname, facilitator_email, facilitator_password)
-        print("Facilitator list created")
+        print("Facilitator account created")
     elif check == 2:
         users.create_student_list(firstname, lastname, facilitator_email, facilitator_password)
+        print("Student account created")
 
 def facilitator_choice(email):
     option = input("""
@@ -214,7 +215,9 @@ def show_courses(email):
     facilitator_choice(email)
 
 def get_course_students(email):
-    users.print_a_course_grade_for_a_facilitator(email)
+    students = users.print_a_course_grade_for_a_facilitator(email)
+    if students == "":
+        print("you have not created any students")
     facilitator_choice(email)
 
 def grade_student(email):

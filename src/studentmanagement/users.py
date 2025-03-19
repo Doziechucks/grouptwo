@@ -190,8 +190,7 @@ class UserManagement:
         for facilitator in self.__facilitator_list:
             if facilitator.email == facilitator_email and facilitator.is_logged_in == True:
                 return True
-            else:
-                return False
+            return False
 
     def check_student_logged_in(self, student_email):
         for student in self.__student_list:
