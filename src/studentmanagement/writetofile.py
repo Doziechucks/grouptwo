@@ -18,6 +18,12 @@ class WriteToFile:
                     break
         return object_list
 
+    @staticmethod
+    def delete_from_file(filename):
+        with open(filename, "wb") as file:
+            pickle.dump([], file)
+
+
 
 
 
