@@ -221,6 +221,7 @@ def grade_student(email):
 def view_course_grade(email):
     pass
 
+
 def logout_method():
     users.logout_method()
 

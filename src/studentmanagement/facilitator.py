@@ -27,6 +27,7 @@ class Facilitator(User):
             for course in student.course_list:
                 if course.course_id in self.__facilitator_course_dict.keys():
                     self.__facilitator_course_dict[course.course_id].append(student.email)
+            # for course in
 
     def print_facilitator_course_list(self):
         courses = ""
@@ -38,6 +39,7 @@ class Facilitator(User):
         self.__facilitator_grade[course_id] = []
 
     def course_grades(self, course_id, email, grade):
+        self.add_student_emails_to_course()
         for course in self.__facilitator_course_dict.keys():
             if course == course_id and self.__facilitator_course_dict[course_id] == [email]:
                 self.__facilitator_grade[course_id].append(email)
