@@ -218,6 +218,9 @@ def grade_student(email):
     users.grade_a_particular_course(course_id, student_email, grade, email)
     facilitator_choice(email)
 
+def view_course_grade(email):
+    pass
+
 def logout_method():
     users.logout_method()
 
